@@ -54,22 +54,32 @@ class FlightController extends Controller
         $voli = [];
 
         $flights = Flight::all();
+        $airports = Airport::all();
 
         foreach ($flights as $flight) {
-            if ($flight->code_arrival == $codiceArrivo && $flight->code_departure == $codicePartenza)  {
+            if ($flight->code_departure == $codicePartenza)  {
                 $voli[] = $flight;
             } else if($flight->code_arrival == $codiceArrivo) {
                 $voli[] = $flight;
             }
         }
-        // dd($voli);
-        foreach ($voli as $volo) {
 
-            $price[] = $volo->price;
-        }
+        // $prova = [];
+        // foreach ($voli as $volo) {
+        //     if ($code_departure->name == $valuePartenza && $code_departure->code == $volo->code_departure) {
+        //         $prova[] = $volo;
+        //     }
+        // }
 
-        $smallestPrice = min($price);
-        return view('flights.index', compact($data));
+        // $prova2 = [];
+
+        // foreach ($voli as $volo) {
+        //     if ($code_arrival->name == $valueArrivo && $code_arrival->code == $volo->code_arrival) {
+        //         $prova2[] = $volo;
+        //     }
+        // }
+
+        return view('flights.index', compact('voli', 'valuePartenza', 'valueArrivo', 'airports', 'code_departure', 'code_arrival'));
     }
 
     /**
