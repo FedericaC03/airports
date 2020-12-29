@@ -64,7 +64,7 @@
         </style>
     </head>
     <body>
-        <form action="{{route('Flights.index')}}" method="post">
+        <form action="{{route('Flights.store')}}" method="post">
             @csrf
             @method('POST')
             <input name="partenza" id="partenza" type="text" placeholder="partenza">

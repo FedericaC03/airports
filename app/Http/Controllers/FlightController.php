@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Flight;
+use App\Airport;
 class FlightController extends Controller
 {
     /**
@@ -11,13 +12,9 @@ class FlightController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        $data = $request->all();
-        dd($data);
-        $partenza = Flight::where("code_departure");
 
-        return view('airports.index', compact($data));
     }
 
     /**
@@ -38,7 +35,41 @@ class FlightController extends Controller
      */
     public function store(Request $request)
     {
+        $data = $request->all();
+
         //
+        $valuePartenza = $data['partenza'];
+        $valueArrivo = $data['arrivo'];
+
+        $code_departure = Airport::where("name", $valuePartenza)->first();
+        $code_arrival = Airport::where("name", $valueArrivo)->first();
+
+        $codicePartenza = $code_departure->code;
+        $codiceArrivo = $code_arrival->code;
+
+        // dd($code_departure);
+        $partenze = Flight::where("code_departure", $codicePartenza)->get();
+        $arrivo = Flight::where("code_arrival", $codiceArrivo)->get();
+
+        $voli = [];
+
+        $flights = Flight::all();
+
+        foreach ($flights as $flight) {
+            if ($flight->code_arrival == $codiceArrivo && $flight->code_departure == $codicePartenza)  {
+                $voli[] = $flight;
+            } else if($flight->code_arrival == $codiceArrivo) {
+                $voli[] = $flight;
+            }
+        }
+        // dd($voli);
+        foreach ($voli as $volo) {
+
+            $price[] = $volo->price;
+        }
+
+        $smallestPrice = min($price);
+        return view('flights.index', compact($data));
     }
 
     /**
