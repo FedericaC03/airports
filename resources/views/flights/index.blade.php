@@ -12,59 +12,71 @@
 
     <h1 class="text-center m-2">Elenco Voli</h1>
 
-
-    @foreach ($voli as $volo)
-
-    <?php
-        $minprice[] = $volo->price->first()
-    ?>
-
-    @if ($volo->price == min($minprice))
-    <div class="container">
-    <div class="card w-50 m-3 text-center">
-        <h5 class="card-header">MIGLIOR PREZZO</h5>
-        <div class="card-body">
-          <h5 class="card-title font-weight-bold">{{$valuePartenza}} - {{$valueArrivo}}</h5>
-          <p class="card-text ">{{$code_departure->code}} - {{$volo->code_departure}} - {{$volo->code_arrival}} {{$volo->price}}€</p>
-          <a href="#" class="btn btn-primary">Acquista</a>
-        </div>
-    </div>
-</div>
-    @endif
-    @endforeach
-
-
-    <div class="container">
+    @if ($valuePartenza != $valueArrivo)
         @foreach ($voli as $volo)
-        @if (($code_arrival->name == $valueArrivo && $code_arrival->code == $volo->code_arrival) && ($code_departure->name == $valuePartenza && $code_departure->code == $volo->code_departure))
-        <div class="card w-50 m-3 text-center">
-            <h5 class="card-header">DIRETTO</h5>
-            <div class="card-body">
-              <h5 class="card-title font-weight-bold">{{$valuePartenza}} - {{$valueArrivo}}</h5>
-              <p class="card-text">{{$volo->code_departure}} - {{$volo->code_arrival}} {{$volo->price}}€</p>
-              <a href="#" class="btn btn-primary">Acquista</a>
+
+        <?php
+                $minprice[] = $volo->price;
+        ?>
+
+        @if ($volo->price == min($minprice) && $code_arrival->code == $volo->code_arrival && $code_departure->code != $volo->code_departure)
+            <div class="container">
+                <div class="card w-50 m-3 text-center">
+                    <h5 class="card-header">MIGLIOR PREZZO</h5>
+                    <div class="card-body">
+                    <h5 class="card-title font-weight-bold">{{$valuePartenza}} - {{$valueArrivo}}</h5>
+                    <p class="card-text ">{{$code_departure->code}} - {{$volo->code_departure}} - {{$volo->code_arrival}} <br>  {{$volo->price}}€</p>
+                    <a href="#" class="btn btn-primary">Acquista</a>
+                    </div>
+                </div>
             </div>
-          </div>
+        @elseif ($volo->price == min($minprice) && $code_arrival->code == $volo->code_arrival && $code_departure->code == $volo->code_departure)
+            <div class="container">
+                <div class="card w-50 m-3 text-center">
+                    <h5 class="card-header">MIGLIOR PREZZO</h5>
+                    <div class="card-body">
+                    <h5 class="card-title font-weight-bold">{{$valuePartenza}} - {{$valueArrivo}}</h5>
+                    <p class="card-text ">{{$volo->code_departure}} - {{$volo->code_arrival}} <br>  {{$volo->price}}€</p>
+                    <a href="#" class="btn btn-primary">Acquista</a>
+                    </div>
+                </div>
+            </div>
         @endif
         @endforeach
-    </div>
 
-    <div class="container w-100">
-        @foreach ($voli as $volo)
-        @if ($code_arrival->name == $valueArrivo && $code_arrival->code == $volo->code_arrival)
-        <div class="card w-100 m-3 text-center">
-            <h5 class="card-header">SCALO</h5>
-            <div class="card-body">
-              <h5 class="card-title font-weight-bold">{{$valuePartenza}} - {{$valueArrivo}}</h5>
-              <p class="card-text ">{{$code_departure->code}} - {{$volo->code_departure}} - {{$volo->code_arrival}} {{$volo->price}}€</p>
-              <a href="#" class="btn btn-primary">Acquista</a>
+
+        <div class="container">
+            @foreach ($voli as $volo)
+            @if (($code_arrival->name == $valueArrivo && $code_arrival->code == $volo->code_arrival) && ($code_departure->name == $valuePartenza && $code_departure->code == $volo->code_departure))
+            <div class="card w-50 m-3 text-center">
+                <h5 class="card-header">DIRETTO</h5>
+                <div class="card-body">
+                <h5 class="card-title font-weight-bold">{{$valuePartenza}} - {{$valueArrivo}}</h5>
+                <p class="card-text">{{$volo->code_departure}} - {{$volo->code_arrival}} <br> {{$volo->price}}€</p>
+                <a href="#" class="btn btn-primary">Acquista</a>
+                </div>
             </div>
+            @endif
+            @endforeach
         </div>
-        @endif
-        @endforeach
-    </div>
 
-
+        <div class="container w-100">
+            @foreach ($voli as $volo)
+            @if ($code_arrival->name == $valueArrivo && $code_arrival->code == $volo->code_arrival)
+            <div class="card w-100 m-3 text-center">
+                <h5 class="card-header">SCALO</h5>
+                <div class="card-body">
+                <h5 class="card-title font-weight-bold">{{$valuePartenza}} - {{$valueArrivo}}</h5>
+                <p class="card-text ">{{$code_departure->code}} - {{$volo->code_departure}} - {{$volo->code_arrival}} <br> {{$volo->price}}€</p>
+                <a href="#" class="btn btn-primary">Acquista</a>
+                </div>
+            </div>
+            @endif
+            @endforeach
+        </div>
+    @else
+    <h3>Errore: La città di partenza non può corrispondere con la città di arrivo</h3>
+ @endif
 </body>
 </html>
 

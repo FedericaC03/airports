@@ -13,8 +13,10 @@
         <form class="w-25 m-5" action="{{route('Flights.store')}}" method="post">
             @csrf
             @method('POST')
+
             <div class="form-group">
               <label for="departure">Da</label>
+
               <input name="partenza" type="text" class="form-control text-center" id="departure" placeholder="Città aeroporto di partenza">
             </div>
             <div class="form-group">
