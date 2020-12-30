@@ -38,7 +38,7 @@ class FlightTableSeeder extends Seeder
         $flight1e = New FlightObj('FCO', 'LIN');
         $flightList[] = $flight1e;
 
-        //MILANO
+        //LINANO
         $flight2a = New FlightObj('LIN', 'NAP');
         $flightList[] = $flight2a;
         $flight2b = New FlightObj('LIN', 'BRI');
@@ -67,7 +67,7 @@ class FlightTableSeeder extends Seeder
         $flightList[] = $flight4a;
         $flight4b = New FlightObj('NAP', 'BRI');
         $flightList[] = $flight4b;
-        $flight4c = New FlightObj('NAP', 'MIL');
+        $flight4c = New FlightObj('NAP', 'LIN');
         $flightList[] = $flight4c;
         $flight4d = New FlightObj('NAP', 'PMF');
         $flightList[] = $flight4d;
@@ -79,7 +79,7 @@ class FlightTableSeeder extends Seeder
         $flightList[] = $flight5a;
         $flight5b = New FlightObj('BRI', 'NAP');
         $flightList[] = $flight5b;
-        $flight5c = New FlightObj('BRI', 'MIL');
+        $flight5c = New FlightObj('BRI', 'LIN');
         $flightList[] = $flight5c;
         $flight5d = New FlightObj('BRI', 'PMF');
         $flightList[] = $flight5d;
@@ -91,7 +91,7 @@ class FlightTableSeeder extends Seeder
         $flightList[] = $flight6a;
         $flight6b = New FlightObj('PMF', 'NAP');
         $flightList[] = $flight6b;
-        $flight6c = New FlightObj('PMF', 'MIL');
+        $flight6c = New FlightObj('PMF', 'LIN');
         $flightList[] = $flight6c;
         $flight6d = New FlightObj('PMF', 'BRI');
         $flightList[] = $flight6d;
