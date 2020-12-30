@@ -38,7 +38,7 @@ class FlightTableSeeder extends Seeder
         $flight1e = New FlightObj('FCO', 'LIN');
         $flightList[] = $flight1e;
 
-        //LINANO
+        //MILANO
         $flight2a = New FlightObj('LIN', 'NAP');
         $flightList[] = $flight2a;
         $flight2b = New FlightObj('LIN', 'BRI');

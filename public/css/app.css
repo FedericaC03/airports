@@ -1,3 +1,7 @@
+body {
+  background-color: #F1F2F8;
+}
+
 .card-header {
   background-color: #00887D;
   color: white;
@@ -9,7 +13,13 @@
   justify-content: center;
 }
 
-body {
-  background-color: #F1F2F8;
+.container-scalo {
+  display: flex;
+  justify-content: center;
+}
+
+.container-scalo p {
+  padding: 10px;
+  margin: 10px;
 }
 
