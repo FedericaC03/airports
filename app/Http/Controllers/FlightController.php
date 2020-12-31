@@ -46,9 +46,8 @@ class FlightController extends Controller
                 }
             }
         }
-
         //PRENDO IL PREZZO PIU' BASSO
-        $voli = collect($voli)->sortBy('prezzo')->first();
-        return view('flights.index', compact('voli', 'valuePartenza', 'valueArrivo','code_departure', 'code_arrival'));
+        $voloConveniente = collect($voli)->sortBy('prezzo')->first();
+        return view('flights.index', compact('voli', 'voloConveniente', 'valuePartenza', 'valueArrivo','code_departure', 'code_arrival'));
     }
 }
