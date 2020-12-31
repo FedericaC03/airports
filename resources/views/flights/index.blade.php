@@ -11,6 +11,7 @@
 <body>
     <main>
         {{-- SEZIONE PREZZO MIGLIORE --}}
+        <h1 class="text-center pt-5">Elenco Voli</h1>
         <section>
             @if ($valuePartenza != $valueArrivo)
                 {{-- SE IL PREZZO MIGLIORE E' UN DIRETTO --}}
