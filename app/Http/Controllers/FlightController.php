@@ -13,8 +13,8 @@ class FlightController extends Controller
         $data = $request->all();
 
         //VALORI INPUT
-        $valuePartenza = $data['partenza'];
-        $valueArrivo = $data['arrivo'];
+        $valuePartenza = ucfirst($data['partenza']);
+        $valueArrivo = ucfirst($data['arrivo']);
 
         $code_departure = Airport::where("name", $valuePartenza)->first();
         $code_arrival = Airport::where("name", $valueArrivo)->first();
